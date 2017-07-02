@@ -18,6 +18,9 @@ html, body, #app {
 
 .Main {
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .background {
     width: 100%;
@@ -30,10 +33,13 @@ html, body, #app {
   h1 {
     font-family: 'Roboto';
     font-size: $titleSize;
-    padding-top: 40vh;
-    font-weight: bold;
     position: relative;
     z-index: 2;
     color: white;
+    background: #F6A623;
+    padding: 70px 40px;
+    opacity: 0.8;
+    border-radius: 10px;
+    font-weight: normal;
   }
 }
