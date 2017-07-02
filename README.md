@@ -1,2 +1,1 @@
-### Slide
-http://slides.com/davidguan/webgl-workshop#/
+### Personal Website for Sayn Si
