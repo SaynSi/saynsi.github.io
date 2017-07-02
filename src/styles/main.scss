@@ -1,0 +1,39 @@
+$titleSize: 80px;
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Bold.ttf');
+  font-weight: bold;
+}
+
+html, body, #app {
+  height: 100%;
+  text-align: center;
+}
+
+.Main {
+  height: 100%;
+
+  .background {
+    width: 100%;
+    display: none;
+    height: 100%;
+    background-size: cover;
+    position: fixed;
+  }
+
+  h1 {
+    font-family: 'Roboto';
+    font-size: $titleSize;
+    padding-top: 40vh;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+    color: white;
+  }
+}
