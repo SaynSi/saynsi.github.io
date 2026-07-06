@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayn Si — Design Archive 2006–2012</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --card: #F5F5F5;
+    --ink: #000000;
+    --gray: #707070;
+    --blue: #0099FF;
+    --lime: #BCE41B;
+    --r: 8px;
+    --gap: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Figtree", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px; font-weight: 500; line-height: 1.35;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--ink); text-decoration: none; }
+  ::selection { background: var(--blue); color: #fff; }
+
+  main {
+    display: flex; gap: var(--gap);
+    padding: var(--gap);
+    align-items: flex-start;
+    max-width: 1920px; margin: 0 auto;
+  }
+
+  /* ---------- left column ---------- */
+  aside {
+    width: 384px; flex: none;
+    position: sticky; top: var(--gap);
+    height: calc(100vh - 2 * var(--gap));
+    display: flex; flex-direction: column; gap: 10px;
+    overflow-y: auto; scrollbar-width: none;
+  }
+  aside::-webkit-scrollbar { display: none; }
+  .card {
+    background: var(--card); border-radius: var(--r);
+    padding: 18px 20px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  /* name / bio */
+  .card.who { flex: 2.6; justify-content: space-between; align-items: flex-start; }
+  .who h1 { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+  .who .bio { color: var(--gray); font-weight: 500; margin-top: 14px; }
+  .who .bio a { color: var(--ink); border-bottom: 1px solid #d9d9d9; transition: .15s; }
+  .who .bio a:hover { color: var(--blue); border-color: var(--blue); }
+  .who .cta {
+    margin-top: 16px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: #fff;
+    border-radius: 99px; padding: 8px 16px;
+    font-size: 13px; font-weight: 600;
+    transition: background .15s;
+  }
+  .who .cta:hover { background: var(--blue); }
+  .who .cta .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+
+  /* clock */
+  .card.time { flex: 1; }
+  .time .row { display: flex; justify-content: space-between; align-items: baseline; }
+  .time .t { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .time .place { color: var(--gray); }
+
+  /* list cards (archive / index) */
+  .card.list { flex: 2.2; justify-content: flex-start; }
+  .card.list.tall { flex: 3; }
+  .card h2 { font-size: 13px; font-weight: 500; color: var(--gray); margin-bottom: 12px; }
+  .rows { display: flex; flex-direction: column; }
+  .rows .row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+    padding: 4px 0;
+  }
+  .rows .row .l { font-weight: 600; }
+  .rows .row .r { color: var(--gray); font-variant-numeric: tabular-nums; }
+  .rows.linky .row { cursor: pointer; border-radius: 4px; }
+  .rows.linky .row:hover .l { color: var(--blue); }
+  .rows .row .l a { color: inherit; }
+  .rows .row .l a:hover { color: var(--blue); }
+
+  /* footer card */
+  .card.foot { flex: .9; }
+  .foot .row { display: flex; justify-content: space-between; align-items: baseline; }
+  .foot .quote { font-style: italic; font-weight: 400; color: var(--gray); }
+  .foot a:hover { color: var(--blue); }
+  .foot .meta { margin-top: 8px; color: var(--gray); font-size: 12.5px; }
+
+  /* ---------- galleries ---------- */
+  .work {
+    flex: 1; min-width: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap);
+    align-items: start;
+  }
+  .col { display: flex; flex-direction: column; gap: var(--gap); min-width: 0; }
+  .col.offset { padding-top: 90px; }
+
+  .shot {
+    position: relative; border-radius: var(--r); overflow: hidden;
+    background: var(--card);
+    cursor: zoom-in;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .shot.seen { opacity: 1; transform: none; }
+  .shot img { display: block; width: 100%; height: auto; transition: transform .5s cubic-bezier(.22,1,.36,1); }
+  .shot.duo { display: flex; flex-direction: column; }
+  .shot:hover img { transform: scale(1.025); }
+  .shot .cap {
+    position: absolute; left: 10px; bottom: 10px;
+    display: flex; gap: 6px; align-items: center;
+    opacity: 0; transform: translateY(6px);
+    transition: .25s ease;
+    pointer-events: none;
+  }
+  .shot:hover .cap { opacity: 1; transform: none; }
+  .cap span {
+    background: rgba(0,0,0,.82); color: #fff;
+    backdrop-filter: blur(6px);
+    font-size: 12px; font-weight: 600;
+    border-radius: 99px; padding: 5px 11px;
+    white-space: nowrap;
+  }
+  .cap .yr { background: var(--blue); }
+  .cap .live { background: var(--lime); color: #101010; }
+
+  /* ---------- lightbox ---------- */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,.92);
+    display: none; align-items: center; justify-content: center;
+    padding: 3vw; cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 100%; border-radius: 6px; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px) {
+    main { flex-direction: column; }
+    aside { position: static; width: 100%; height: auto; }
+    .card { padding: 18px; }
+    .card.who .bio { max-width: 52ch; }
+    .card, .card.list, .card.who, .card.time, .card.foot { flex: none; }
+    .work { grid-template-columns: 1fr; }
+    .col.offset { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+  <aside>
+    <div class="card who">
+      <div>
+        <h1>Sayn Si</h1>
+        <p class="bio">Industrial designer turned brand &amp; visual designer. Art director of <a href="#" onclick="return false">HP's annual Supplier Quality Award</a>, 2014—2019 — key visuals, venue graphics, wayfinding, H5 invitations, trophies and the bilingual hosting — plus icon proposals for HP China's Women Impact Network. Before that: furniture, gadgets, apparel prints and identities (2006—2012), aged in a hard drive, served fresh.</p>
+      </div>
+      <a class="cta" href="../"><span class="dot"></span>中文版 · Chinese</a>
+    </div>
+
+    <div class="card time">
+      <div class="row"><span class="t" id="clk">--:--:-- --</span><span class="place">/ Sydney</span></div>
+    </div>
+
+    <div class="card list">
+      <h2>Archive</h2>
+      <div class="rows">
+        <div class="row"><span class="l">15× Years</span><span class="r">2006—2020</span></div>
+        <div class="row"><span class="l">12× Projects</span><span class="r">42 pieces</span></div>
+        <div class="row"><span class="l">6× SQA editions</span><span class="r">HP Inc. · 2014—2019</span></div>
+        <div class="row"><span class="l">1× Quality Award</span><span class="r">HP · FY2015 winner</span></div>
+      </div>
+    </div>
+
+    <div class="card list tall">
+      <h2>Index</h2>
+      <div class="rows linky" id="idx">
+        <div class="row" data-p="wise"><span class="l">WISE · Icon Proposals</span><span class="r">2020</span></div>
+        <div class="row" data-p="hp2019"><span class="l">HP SQA · Reinvent Mfg.</span><span class="r">2019</span></div>
+        <div class="row" data-p="hp2018"><span class="l">HP SQA · Chained Value</span><span class="r">2018</span></div>
+        <div class="row" data-p="hp2017"><span class="l">HP SQA · Quantified Future</span><span class="r">2017</span></div>
+        <div class="row" data-p="hp2016"><span class="l">HP SQA · Notebook</span><span class="r">2016</span></div>
+        <div class="row" data-p="hp2014"><span class="l">HP SQA · The Debut</span><span class="r">2014—15</span></div>
+        <div class="row" data-p="ufc"><span class="l">Ultimate Food Concept</span><span class="r">2012</span></div>
+        <div class="row" data-p="edhardy"><span class="l">Ed Hardy Prints</span><span class="r">2010</span></div>
+        <div class="row" data-p="ereader"><span class="l">E-Reader 万物生长</span><span class="r">2009</span></div>
+        <div class="row" data-p="lapis"><span class="l">Lapis Yun Logotype</span><span class="r">2009</span></div>
+        <div class="row" data-p="hair"><span class="l">Hairdressing Station</span><span class="r">2009</span></div>
+        <div class="row" data-p="candy"><span class="l">Candy &amp; Stool</span><span class="r">2006</span></div>
+      </div>
+    </div>
+
+    <div class="card list">
+      <h2>Live H5 invitations — hand-built for WeChat, pre-GenAI</h2>
+      <div class="rows">
+        <div class="row"><span class="l"><a href="https://c.eqxiu.com/s/Yu2pe97n" target="_blank" rel="noopener">2017 · Quantified Future ↗</a></span><span class="r">best on mobile</span></div>
+        <div class="row"><span class="l"><a href="https://q.eqxiu.com/s/VRMllrVU" target="_blank" rel="noopener">2018 · Chained Value ↗</a></span><span class="r">best on mobile</span></div>
+      </div>
+    </div>
+
+    <div class="card foot">
+      <p class="quote">“Good design gets old. Great design gets vintage.”</p>
+      <p class="meta">© 2026 — Archive</p>
+    </div>
+  </aside>
+
+  <section class="work">
+    <div class="col">
+      <figure class="shot" data-p="wise"><img src="../images/wise-wave-2020.jpg" alt="WISE icon proposal 1: ocean wave" loading="lazy"><figcaption class="cap"><span>WISE icon · route 1 — Ocean Wave</span><span class="yr">2020</span></figcaption></figure>
+      <figure class="shot" data-p="wise"><img src="../images/wise-tiara-2020.jpg" alt="WISE icon proposal 3: tiara" loading="lazy"><figcaption class="cap"><span>WISE icon · route 3 — Tiara</span><span class="yr">2020</span></figcaption></figure>
+      <figure class="shot" data-p="hp2019"><img src="../images/hp-stage-2019.jpg" alt="HP SQA 2019 Reinvent Manufacturing stage" loading="lazy"><figcaption class="cap"><span>HP SQA 2019 — stage</span><span class="yr">2019</span></figcaption></figure>
+      <figure class="shot" data-p="hp2018"><img src="../images/hp-kv-2018.jpg" alt="HP Supplier Award 2018 Chained Value key visual" loading="lazy"><figcaption class="cap"><span>HP SQA 2018 — key visual</span><span class="yr">2018</span></figcaption></figure>
+      <figure class="shot" data-p="hp2018"><img src="../images/hp-rollup-2018.jpg" alt="HP SQA 2018 pull-up banner, printed" loading="lazy"><figcaption class="cap"><span>HP SQA 2018 — pull-up, printed</span><span class="yr">2018</span></figcaption></figure>
+      <figure class="shot" data-p="hp2017"><img src="../images/hp-trophies-2017.jpg" alt="Custom crystal trophies for HP SQA 2017" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — crystal trophies</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot" data-p="hp2018" data-href="https://q.eqxiu.com/s/VRMllrVU"><img src="../images/hp-h5-2018.jpg" alt="HP SQA 2018 H5 invitation on mobile" loading="lazy"><figcaption class="cap"><span>HP SQA 2018 — H5 invitation</span><span class="live">open live ↗</span></figcaption></figure>
+      <figure class="shot" data-p="hp2017"><img src="../images/hp-venue-2017.jpg" alt="HP SQA 2017 Quantified Future backdrop and roll-up" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — venue graphics</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot" data-p="hp2017"><img src="../images/hp-stage-2017.jpg" alt="HP SQA 2017 stage with Quantified Future backdrop" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — stage</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot" data-p="hp2017"><img src="../images/hp-signage-rq-2017.jpg" alt="Reinvent Quality overhead banner, white version" loading="lazy"><figcaption class="cap"><span>HP SQA — overhead banner</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot" data-p="hp2016"><img src="../images/hp-kv-2016.jpg" alt="HP Supplier Quality Award 2016 low-poly key visual" loading="lazy"><figcaption class="cap"><span>HP SQA 2016 — key visual</span><span class="yr">2016</span></figcaption></figure>
+      <figure class="shot" data-p="hp2014"><img src="../images/hp-invite-2014.jpg" alt="2014 PSGO Supplier Quality Award invitation" loading="lazy"><figcaption class="cap"><span>HP SQA 2014 — invitation EDM</span><span class="yr">2014</span></figcaption></figure>
+      <figure class="shot" data-p="hp2014"><img src="../images/hp-trifold-2015.jpg" alt="HP SQA tri-fold brochure design" loading="lazy"><figcaption class="cap"><span>HP SQA — tri-fold brochure</span><span class="yr">2015</span></figcaption></figure>
+      <figure class="shot" data-p="ufc"><img src="../images/ufc-01.jpg" alt="Die-cut business cards for a Shanghai celebrity chef" loading="lazy"><figcaption class="cap"><span>Cards for a celebrity chef</span><span class="yr">2012</span></figcaption></figure>
+      <figure class="shot" data-p="edhardy"><img src="../images/edhardy-01.jpg" alt="Ed Hardy women's hoodie print board" loading="lazy"><figcaption class="cap"><span>Ed Hardy — women's hoodies</span><span class="yr">2010</span></figcaption></figure>
+      <figure class="shot" data-p="ereader"><img src="../images/ereader-01.jpg" alt="E-reader concept with cloth-bound slipcase" loading="lazy"><figcaption class="cap"><span>E-Reader 万物生长</span><span class="yr">2009</span></figcaption></figure>
+      <figure class="shot" data-p="ufc"><img src="../images/ufc-03.jpg" alt="Red and white business card pair" loading="lazy"><figcaption class="cap"><span>Cards for a celebrity chef</span><span class="yr">2012</span></figcaption></figure>
+      <figure class="shot" data-p="edhardy"><img src="../images/edhardy-03.jpg" alt="Ed Hardy iPhone skins" loading="lazy"><figcaption class="cap"><span>Ed Hardy — iPhone skins</span><span class="yr">2010</span></figcaption></figure>
+      <figure class="shot" data-p="candy"><img src="../images/candy-stool-01.jpg" alt="Candy and Stool furniture set" loading="lazy"><figcaption class="cap"><span>Candy &amp; Stool</span><span class="yr">2006</span></figcaption></figure>
+      <figure class="shot" data-p="lapis"><img src="../images/lapis-yun-01.jpg" alt="Lapis Yun bilingual logotype" loading="lazy"><figcaption class="cap"><span>Lapis Yun logotype</span><span class="yr">2009</span></figcaption></figure>
+    </div>
+    <div class="col offset">
+      <figure class="shot" data-p="wise"><img src="../images/wise-brief-2020.jpg" alt="WISE icon design brief" loading="lazy"><figcaption class="cap"><span>WISE icon · the brief</span><span class="yr">2020</span></figcaption></figure>
+      <figure class="shot" data-p="wise"><img src="../images/wise-lava-2020.jpg" alt="WISE icon proposal 2: lava lamp" loading="lazy"><figcaption class="cap"><span>WISE icon · route 2 — Lava Lamp</span><span class="yr">2020</span></figcaption></figure>
+      <figure class="shot" data-p="wise"><img src="../images/wise-qingyi-2020.jpg" alt="WISE icon proposal 4: Peking Opera female role" loading="lazy"><figcaption class="cap"><span>WISE icon · route 4 — 青衣</span><span class="yr">2020</span></figcaption></figure>
+      <figure class="shot" data-p="hp2019"><img src="../images/hp-hall-2019.jpg" alt="HP SQA 2019 hallway with roll-up and signing wall" loading="lazy"><figcaption class="cap"><span>HP SQA 2019 — entrance hall</span><span class="yr">2019</span></figcaption></figure>
+      <figure class="shot" data-p="hp2019"><img src="../images/hp-backdrop-2019.jpg" alt="HP SQA 2019 Reinvent Manufacturing backdrop design" loading="lazy"><figcaption class="cap"><span>HP SQA 2019 — backdrop design</span><span class="yr">2019</span></figcaption></figure>
+      <figure class="shot" data-p="hp2018"><img src="../images/hp-wall-2018.jpg" alt="HP SQA 2014-2018 timeline history wall design" loading="lazy"><figcaption class="cap"><span>HP SQA — history wall, 5 years</span><span class="yr">2018</span></figcaption></figure>
+      <figure class="shot" data-p="hp2018"><img src="../images/hp-venue-2018.jpg" alt="HP SQA 2018 stage and history wall installed at the venue" loading="lazy"><figcaption class="cap"><span>HP SQA 2018 — on site</span><span class="yr">2018</span></figcaption></figure>
+      <figure class="shot" data-p="hp2017" data-href="https://c.eqxiu.com/s/Yu2pe97n"><img src="../images/hp-h5-2017.jpg" alt="HP SQA 2017 H5 invitation on mobile" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — H5 invitation</span><span class="live">open live ↗</span></figcaption></figure>
+      <figure class="shot" data-p="hp2017"><img src="../images/hp-rollup-2017.jpg" alt="HP SQA 2017 Quantified Future roll-up design" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — roll-up design</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot" data-p="hp2017"><img src="../images/hp-panorama-2017.jpg" alt="HP SQA 2017 venue panorama with product wall" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — venue panorama</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot" data-p="hp2017"><img src="../images/hp-signage-2017.jpg" alt="Bilingual directional signage pair for HP SQA 2017" loading="lazy"><figcaption class="cap"><span>HP SQA — wayfinding signage</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot" data-p="hp2017"><img src="../images/hp-signage-blue-2017.jpg" alt="Reinvent Quality overhead banner, blue version" loading="lazy"><figcaption class="cap"><span>HP SQA — overhead banner</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot" data-p="hp2017"><img src="../images/hp-vmd-2017.jpg" alt="Venue VMD wall of HP product posters" loading="lazy"><figcaption class="cap"><span>HP SQA — VMD product wall</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot" data-p="hp2016"><img src="../images/hp-venue-2016.jpg" alt="HP SQA 2016 welcome kits and signing wall" loading="lazy"><figcaption class="cap"><span>HP SQA 2016 — signing wall &amp; kits</span><span class="yr">2016</span></figcaption></figure>
+      <figure class="shot" data-p="hp2014"><img src="../images/hp-kv-2014.jpg" alt="2014 Supplier Quality Award Notebook key visual with earth" loading="lazy"><figcaption class="cap"><span>HP SQA 2014 — key visual</span><span class="yr">2014</span></figcaption></figure>
+      <figure class="shot" data-p="hp2014"><img src="../images/hp-wall-2015.jpg" alt="HP SQA 2015 signing wall at the venue" loading="lazy"><figcaption class="cap"><span>HP SQA 2015 — signing wall</span><span class="yr">2015</span></figcaption></figure>
+      <figure class="shot" data-p="ufc"><img src="../images/ufc-02.jpg" alt="Gradient business cards" loading="lazy"><figcaption class="cap"><span>Cards for a celebrity chef</span><span class="yr">2012</span></figcaption></figure>
+      <figure class="shot" data-p="edhardy"><img src="../images/edhardy-02.jpg" alt="Ed Hardy men's tee print board" loading="lazy"><figcaption class="cap"><span>Ed Hardy — men's tees</span><span class="yr">2010</span></figcaption></figure>
+      <figure class="shot duo" data-p="ufc">
+        <img src="../images/ufc-04.jpg" alt="Ticket-style business card, unfolded flat" loading="lazy">
+        <img src="../images/ufc-05.jpg" alt="The same card folded into a chopstick rest" loading="lazy">
+        <figcaption class="cap"><span>One card: unfolds to a ticket, folds into a chopstick rest</span><span class="yr">2012</span></figcaption>
+      </figure>
+      <figure class="shot" data-p="candy"><img src="../images/candy-stool-02.jpg" alt="Stools stacked like suitcases" loading="lazy"><figcaption class="cap"><span>Candy &amp; Stool</span><span class="yr">2006</span></figcaption></figure>
+      <figure class="shot" data-p="hair"><img src="../images/hairdressing-01.jpg" alt="Hairdressing station concept render" loading="lazy"><figcaption class="cap"><span>Hairdressing station</span><span class="yr">2009</span></figcaption></figure>
+    </div>
+  </section>
+
+</main>
+
+<div class="lightbox" id="lightbox"><img src="" alt=""></div>
+
+<script>
+  // Australian Eastern Time clock, 12-hour like the reference
+  const clk = document.getElementById('clk');
+  function tick() {
+    clk.textContent = new Intl.DateTimeFormat('en-US', { timeZone: 'Australia/Sydney', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).format(new Date());
+  }
+  tick(); setInterval(tick, 1000);
+
+  // reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.shot').forEach(s => io.observe(s));
+
+  // index rows scroll to first image of the project
+  document.querySelectorAll('#idx .row').forEach(r => {
+    r.addEventListener('click', () => {
+      const target = document.querySelector('.shot[data-p="' + r.dataset.p + '"]');
+      if (target) target.scrollIntoView({ block: 'center' });
+    });
+  });
+
+  // lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('img');
+  document.querySelectorAll('.shot').forEach(s => {
+    s.addEventListener('click', e => {
+      if (s.dataset.href) { window.open(s.dataset.href, '_blank', 'noopener'); return; }
+      lbImg.src = (e.target.tagName === 'IMG') ? e.target.src : s.querySelector('img').src;
+      lb.classList.add('open');
+    });
+    if (s.dataset.href) s.style.cursor = 'pointer';
+  });
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+</script>
+
+</body>
+</html>

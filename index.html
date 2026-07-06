@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayn Si — Design Archive 2006–2012</title>
+<style>
+  :root {
+    --paper: #F4F1EA;
+    --card: #FFFFFF;
+    --ink: #17150F;
+    --ink-soft: #6D685C;
+    --line: #DDD8CB;
+    --accent: #E8491F;
+    --sans: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 6vw; }
+
+  /* ---------- header ---------- */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 6vw;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { font-weight: 700; letter-spacing: .18em; text-transform: uppercase; font-size: 14px; text-decoration: none; color: var(--ink); }
+  .brand span { color: var(--accent); }
+  header nav { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
+  header nav a { color: var(--ink-soft); text-decoration: none; margin-left: 22px; }
+  header nav a:hover { color: var(--accent); }
+  @media (max-width: 640px) { header nav a.hide-m { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { padding-block: 22vh 10vh; }
+  .kicker {
+    font-size: 12px; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 28px;
+  }
+  h1 {
+    font-size: clamp(52px, 11vw, 150px);
+    line-height: .95; letter-spacing: -.03em; font-weight: 700;
+    text-transform: uppercase;
+  }
+  h1 .outline {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--ink);
+  }
+  .hero-sub {
+    display: flex; flex-wrap: wrap; gap: 40px;
+    margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--ink);
+  }
+  .hero-sub .zh { font-size: 20px; letter-spacing: .5em; color: var(--ink); white-space: nowrap; }
+  .hero-sub p { max-width: 520px; color: var(--ink-soft); font-size: 15px; }
+
+  /* ---------- index list ---------- */
+  .index { padding-block: 6vh 12vh; }
+  .index a {
+    display: flex; align-items: baseline; gap: 24px;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+    text-decoration: none; color: var(--ink);
+    transition: padding-left .25s ease;
+  }
+  .index a:first-child { border-top: 1px solid var(--line); }
+  .index a:hover { padding-left: 14px; }
+  .index a:hover .t { color: var(--accent); }
+  .index .no { font-size: 12px; color: var(--ink-soft); letter-spacing: .1em; min-width: 2.4em; }
+  .index .t { font-size: clamp(20px, 3vw, 32px); font-weight: 600; letter-spacing: -.01em; transition: color .2s; }
+  .index .cat { font-size: 12px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase; }
+  .index .yr { margin-left: auto; font-size: 13px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+  /* ---------- project sections ---------- */
+  section.project { padding-block: 10vh 6vh; }
+  .meta {
+    display: flex; align-items: baseline; gap: 18px;
+    border-top: 1px solid var(--ink); padding-top: 18px;
+  }
+  .meta .no { font-size: 13px; letter-spacing: .12em; color: var(--accent); }
+  .meta .cat { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
+  .meta .year {
+    margin-left: auto;
+    font-size: clamp(56px, 9vw, 120px); line-height: .8; font-weight: 700;
+    color: transparent; -webkit-text-stroke: 1.2px var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  h2 { font-size: clamp(34px, 5.5vw, 64px); letter-spacing: -.02em; line-height: 1.05; margin-top: 20px; }
+  h2 .zh { display: block; font-size: .42em; font-weight: 500; letter-spacing: .3em; color: var(--ink-soft); margin-top: 12px; }
+  .desc { max-width: 560px; color: var(--ink-soft); font-size: 15px; margin: 26px 0 48px; }
+
+  .gallery { display: grid; gap: 28px; }
+  .row-2 { display: grid; gap: 28px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 720px) { .row-2 { grid-template-columns: 1fr; } }
+
+  figure.frame {
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: clamp(20px, 4vw, 56px);
+    display: flex; align-items: center; justify-content: center;
+    cursor: zoom-in;
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  figure.frame.seen { opacity: 1; transform: none; }
+  figure.frame img { max-width: 100%; height: auto; display: block; }
+  figure.frame.narrow img { max-width: min(100%, 520px); }
+
+  /* ---------- footer ---------- */
+  footer { padding-block: 14vh 8vh; }
+  footer .big {
+    font-size: clamp(36px, 7vw, 90px); font-weight: 700; letter-spacing: -.02em;
+    text-transform: uppercase; line-height: 1;
+  }
+  footer .big em { font-style: normal; color: transparent; -webkit-text-stroke: 1.2px var(--ink); }
+  footer .meta-line {
+    display: flex; flex-wrap: wrap; gap: 16px 40px; justify-content: space-between;
+    border-top: 1px solid var(--ink); margin-top: 48px; padding-top: 20px;
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft);
+  }
+
+  /* ---------- lightbox ---------- */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(23,21,15,.92);
+    display: none; align-items: center; justify-content: center;
+    padding: 4vw; cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 100%; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="#top">Sayn Si<span>.</span></a>
+  <nav>
+    <a href="#works">Works 作品</a>
+    <a class="hide-m" href="#about">About 关于</a>
+    <a href="en/">EN</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <div class="wrap hero">
+    <p class="kicker">Selected Works · 2006 — 2012</p>
+    <h1>Design<span class="outline">Archive</span></h1>
+    <div class="hero-sub">
+      <div class="zh">设计档案</div>
+      <p>工业设计出身,后转向品牌与视觉传达。这里收录的是 2006 至 2012 年间的早期作品——家具、产品、服装印花与品牌识别。它们属于各自的年代,也记录了一条设计路径的起点。</p>
+    </div>
+  </div>
+
+  <div class="wrap index" id="works">
+    <a href="#p1"><span class="no">01</span><span class="t">Ultimate Food Concept</span><span class="cat">Identity</span><span class="yr">2012</span></a>
+    <a href="#p2"><span class="no">02</span><span class="t">Ed Hardy Print Series</span><span class="cat">Apparel</span><span class="yr">2010</span></a>
+    <a href="#p3"><span class="no">03</span><span class="t">万物生长 E-Reader</span><span class="cat">Industrial</span><span class="yr">2009</span></a>
+    <a href="#p4"><span class="no">04</span><span class="t">Lapis Yun 藏珑雲海</span><span class="cat">Logotype</span><span class="yr">2009</span></a>
+    <a href="#p5"><span class="no">05</span><span class="t">Hairdressing Station</span><span class="cat">Product</span><span class="yr">2009</span></a>
+    <a href="#p6"><span class="no">06</span><span class="t">Candy &amp; Stool</span><span class="cat">Furniture</span><span class="yr">2006</span></a>
+  </div>
+
+  <section class="project wrap" id="p1">
+    <div class="meta"><span class="no">01</span><span class="cat">Brand Identity · Stationery</span><span class="year">2012</span></div>
+    <h2>Ultimate Food Concept<span class="zh">品牌识别与名片系统</span></h2>
+    <p class="desc">为一位上海名厨设计的名片系统:同一个标识,四种印制形态——镂空刀版、渐变双色、红白圆形,以及一张撕票式名片:展开是名片,沿虚线折起来就是一只筷架。名厨与筷架本就同席,"民以食为天"——身份与餐桌,在一张卡片上合一。</p>
+    <div class="gallery">
+      <figure class="frame"><img src="images/ufc-01.jpg" alt="Ultimate Food Concept 镂空刀版名片" loading="lazy"></figure>
+      <div class="row-2">
+        <figure class="frame"><img src="images/ufc-02.jpg" alt="渐变双色名片" loading="lazy"></figure>
+        <figure class="frame"><img src="images/ufc-03.jpg" alt="红白圆形图案名片" loading="lazy"></figure>
+      </div>
+      <div class="row-2">
+        <figure class="frame"><img src="images/ufc-04.jpg" alt="撕票式名片,展开的样子" loading="lazy"></figure>
+        <figure class="frame"><img src="images/ufc-05.jpg" alt="同一张名片折起来,成为筷架" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="project wrap" id="p2">
+    <div class="meta"><span class="no">02</span><span class="cat">Apparel Print Design</span><span class="year">2010</span></div>
+    <h2>Ed Hardy Print Series<span class="zh">服装印花设计</span></h2>
+    <p class="desc">以"亚洲力量"为季度主题:东洋艺妓与中国龙图腾的融合,落在军装廓形的卫衣与 T 恤上,并延伸至手机贴膜产品线。</p>
+    <div class="gallery">
+      <figure class="frame"><img src="images/edhardy-01.jpg" alt="Ed Hardy 女士卫衣印花设计" loading="lazy"></figure>
+      <figure class="frame"><img src="images/edhardy-02.jpg" alt="Ed Hardy 男士 T 恤印花设计" loading="lazy"></figure>
+      <figure class="frame narrow"><img src="images/edhardy-03.jpg" alt="Ed Hardy iPhone 贴膜设计" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="project wrap" id="p3">
+    <div class="meta"><span class="no">03</span><span class="cat">Industrial Design</span><span class="year">2009</span></div>
+    <h2>万物生长 E-Reader<span class="zh">电子书阅读器</span></h2>
+    <p class="desc">电子阅读器概念设计:机身如一册薄书,倚在布面函套旁——把"读物"的仪式感留给电子设备。</p>
+    <div class="gallery">
+      <figure class="frame"><img src="images/ereader-01.jpg" alt="万物生长电子书阅读器与书函包装" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="project wrap" id="p4">
+    <div class="meta"><span class="no">04</span><span class="cat">Logotype</span><span class="year">2009</span></div>
+    <h2>Lapis Yun 藏珑雲海<span class="zh">标志与字体设计</span></h2>
+    <p class="desc">中文字标以直线笔画重构篆意,辅以云纹框形;中英双语版本共用同一套骨架。</p>
+    <div class="gallery">
+      <figure class="frame narrow"><img src="images/lapis-yun-01.jpg" alt="藏珑雲海 Lapis Yun 标志设计" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="project wrap" id="p5">
+    <div class="meta"><span class="no">05</span><span class="cat">Product Design</span><span class="year">2009</span></div>
+    <h2>Hairdressing Station<span class="zh">美发工作台</span></h2>
+    <p class="desc">美发工作台概念:金属流线机身与工具收纳抽屉一体成型。</p>
+    <div class="gallery">
+      <figure class="frame narrow"><img src="images/hairdressing-01.jpg" alt="美发工作台产品渲染" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="project wrap" id="p6">
+    <div class="meta"><span class="no">06</span><span class="cat">Furniture Design</span><span class="year">2006</span></div>
+    <h2>Candy &amp; Stool<span class="zh">家具设计</span></h2>
+    <p class="desc">糖果色系的软凳:凳面如旅行箱般提起、叠放,让"坐具"也可以被收藏和携带。</p>
+    <div class="gallery">
+      <figure class="frame"><img src="images/candy-stool-01.jpg" alt="Candy and Stool 糖果色软凳组合" loading="lazy"></figure>
+      <figure class="frame narrow"><img src="images/candy-stool-02.jpg" alt="软凳叠放细节" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <footer class="wrap" id="about">
+    <p class="big">Form follows <em>time.</em></p>
+    <div class="meta-line">
+      <span>Sayn Si · Industrial Design, Jiangnan University</span>
+      <span>Archive 2006 — 2012</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+</main>
+
+<div class="lightbox" id="lightbox"><img src="" alt=""></div>
+
+<script>
+  // 滚动淡入
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.frame').forEach(f => io.observe(f));
+
+  // 点击放大
+  const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('img');
+  document.querySelectorAll('.frame img').forEach(img => {
+    img.parentElement.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+</script>
+
+</body>
+</html>
