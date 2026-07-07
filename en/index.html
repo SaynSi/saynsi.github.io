@@ -117,6 +117,8 @@
   .shot.seen { opacity: 1; transform: none; }
   .shot img { display: block; width: 100%; height: auto; transition: transform .5s cubic-bezier(.22,1,.36,1); }
   .shot.duo { display: flex; flex-direction: column; }
+  .shot.small { padding: clamp(24px, 4vw, 48px) 0; }
+  .shot.small img { width: auto; max-width: min(88%, var(--nat, 420px)); margin-inline: auto; }
   .shot:hover img { transform: scale(1.025); }
   .shot .cap {
     position: absolute; left: 10px; bottom: 10px;
@@ -166,7 +168,7 @@
     <div class="card who">
       <div>
         <h1>Sayn Si</h1>
-        <p class="bio">Industrial designer turned brand &amp; visual designer. Art director of <a href="#" onclick="return false">HP's annual Supplier Quality Award</a>, 2014—2019 — key visuals, venue graphics, wayfinding, H5 invitations, trophies and the bilingual hosting — plus icon proposals for HP China's Women Impact Network. Before that: furniture, gadgets, apparel prints and identities (2006—2012), aged in a hard drive, served fresh.</p>
+        <p class="bio">Demand Generation Manager at <a href="https://www.canva.com" target="_blank" rel="noopener">Canva</a>, specialising in AI SEO — some call it GEO. First life (2006—2015): product-design graduate doing product, graphic and visual-communication design, including six editions of HP's Supplier Quality Award. Second life (2015—now): marketing — product marketing, field marketing, ABM, community nurturing, brand comms, then demand generation. This site is the design archive.</p>
       </div>
       <a class="cta" href="../"><span class="dot"></span>中文版 · Chinese</a>
     </div>
@@ -182,6 +184,7 @@
         <div class="row"><span class="l">12× Projects</span><span class="r">42 pieces</span></div>
         <div class="row"><span class="l">6× SQA editions</span><span class="r">HP Inc. · 2014—2019</span></div>
         <div class="row"><span class="l">1× Quality Award</span><span class="r">HP · FY2015 winner</span></div>
+        <div class="row"><span class="l">2× Careers</span><span class="r">Design → Marketing</span></div>
       </div>
     </div>
 
@@ -213,7 +216,7 @@
 
     <div class="card foot">
       <p class="quote">“Good design gets old. Great design gets vintage.”</p>
-      <p class="meta">© 2026 — Archive</p>
+      <p class="meta">© 2026 — Product Design, Jiangnan University → Demand Gen, Canva</p>
     </div>
   </aside>
 
@@ -225,10 +228,10 @@
       <figure class="shot" data-p="hp2018"><img src="../images/hp-kv-2018.jpg" alt="HP Supplier Award 2018 Chained Value key visual" loading="lazy"><figcaption class="cap"><span>HP SQA 2018 — key visual</span><span class="yr">2018</span></figcaption></figure>
       <figure class="shot" data-p="hp2018"><img src="../images/hp-rollup-2018.jpg" alt="HP SQA 2018 pull-up banner, printed" loading="lazy"><figcaption class="cap"><span>HP SQA 2018 — pull-up, printed</span><span class="yr">2018</span></figcaption></figure>
       <figure class="shot" data-p="hp2017"><img src="../images/hp-trophies-2017.jpg" alt="Custom crystal trophies for HP SQA 2017" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — crystal trophies</span><span class="yr">2017</span></figcaption></figure>
-      <figure class="shot" data-p="hp2018" data-href="https://q.eqxiu.com/s/VRMllrVU"><img src="../images/hp-h5-2018.jpg" alt="HP SQA 2018 H5 invitation on mobile" loading="lazy"><figcaption class="cap"><span>HP SQA 2018 — H5 invitation</span><span class="live">open live ↗</span></figcaption></figure>
+      <figure class="shot small" style="--nat:340px" data-p="hp2018" data-href="https://q.eqxiu.com/s/VRMllrVU"><img src="../images/hp-h5-2018.jpg" alt="HP SQA 2018 H5 invitation on mobile" loading="lazy"><figcaption class="cap"><span>HP SQA 2018 — H5 invitation</span><span class="live">open live ↗</span></figcaption></figure>
       <figure class="shot" data-p="hp2017"><img src="../images/hp-venue-2017.jpg" alt="HP SQA 2017 Quantified Future backdrop and roll-up" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — venue graphics</span><span class="yr">2017</span></figcaption></figure>
       <figure class="shot" data-p="hp2017"><img src="../images/hp-stage-2017.jpg" alt="HP SQA 2017 stage with Quantified Future backdrop" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — stage</span><span class="yr">2017</span></figcaption></figure>
-      <figure class="shot" data-p="hp2017"><img src="../images/hp-signage-rq-2017.jpg" alt="Reinvent Quality overhead banner, white version" loading="lazy"><figcaption class="cap"><span>HP SQA — overhead banner</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot small" style="--nat:330px" data-p="hp2017"><img src="../images/hp-signage-rq-2017.jpg" alt="Reinvent Quality overhead banner, white version" loading="lazy"><figcaption class="cap"><span>HP SQA — overhead banner</span><span class="yr">2017</span></figcaption></figure>
       <figure class="shot" data-p="hp2016"><img src="../images/hp-kv-2016.jpg" alt="HP Supplier Quality Award 2016 low-poly key visual" loading="lazy"><figcaption class="cap"><span>HP SQA 2016 — key visual</span><span class="yr">2016</span></figcaption></figure>
       <figure class="shot" data-p="hp2014"><img src="../images/hp-invite-2014.jpg" alt="2014 PSGO Supplier Quality Award invitation" loading="lazy"><figcaption class="cap"><span>HP SQA 2014 — invitation EDM</span><span class="yr">2014</span></figcaption></figure>
       <figure class="shot" data-p="hp2014"><img src="../images/hp-trifold-2015.jpg" alt="HP SQA tri-fold brochure design" loading="lazy"><figcaption class="cap"><span>HP SQA — tri-fold brochure</span><span class="yr">2015</span></figcaption></figure>
@@ -245,14 +248,14 @@
       <figure class="shot" data-p="wise"><img src="../images/wise-lava-2020.jpg" alt="WISE icon proposal 2: lava lamp" loading="lazy"><figcaption class="cap"><span>WISE icon · route 2 — Lava Lamp</span><span class="yr">2020</span></figcaption></figure>
       <figure class="shot" data-p="wise"><img src="../images/wise-qingyi-2020.jpg" alt="WISE icon proposal 4: Peking Opera female role" loading="lazy"><figcaption class="cap"><span>WISE icon · route 4 — 青衣</span><span class="yr">2020</span></figcaption></figure>
       <figure class="shot" data-p="hp2019"><img src="../images/hp-hall-2019.jpg" alt="HP SQA 2019 hallway with roll-up and signing wall" loading="lazy"><figcaption class="cap"><span>HP SQA 2019 — entrance hall</span><span class="yr">2019</span></figcaption></figure>
-      <figure class="shot" data-p="hp2019"><img src="../images/hp-backdrop-2019.jpg" alt="HP SQA 2019 Reinvent Manufacturing backdrop design" loading="lazy"><figcaption class="cap"><span>HP SQA 2019 — backdrop design</span><span class="yr">2019</span></figcaption></figure>
+      <figure class="shot small" style="--nat:470px" data-p="hp2019"><img src="../images/hp-backdrop-2019.jpg" alt="HP SQA 2019 Reinvent Manufacturing backdrop design" loading="lazy"><figcaption class="cap"><span>HP SQA 2019 — backdrop design</span><span class="yr">2019</span></figcaption></figure>
       <figure class="shot" data-p="hp2018"><img src="../images/hp-wall-2018.jpg" alt="HP SQA 2014-2018 timeline history wall design" loading="lazy"><figcaption class="cap"><span>HP SQA — history wall, 5 years</span><span class="yr">2018</span></figcaption></figure>
       <figure class="shot" data-p="hp2018"><img src="../images/hp-venue-2018.jpg" alt="HP SQA 2018 stage and history wall installed at the venue" loading="lazy"><figcaption class="cap"><span>HP SQA 2018 — on site</span><span class="yr">2018</span></figcaption></figure>
-      <figure class="shot" data-p="hp2017" data-href="https://c.eqxiu.com/s/Yu2pe97n"><img src="../images/hp-h5-2017.jpg" alt="HP SQA 2017 H5 invitation on mobile" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — H5 invitation</span><span class="live">open live ↗</span></figcaption></figure>
-      <figure class="shot" data-p="hp2017"><img src="../images/hp-rollup-2017.jpg" alt="HP SQA 2017 Quantified Future roll-up design" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — roll-up design</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot small" style="--nat:350px" data-p="hp2017" data-href="https://c.eqxiu.com/s/Yu2pe97n"><img src="../images/hp-h5-2017.jpg" alt="HP SQA 2017 H5 invitation on mobile" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — H5 invitation</span><span class="live">open live ↗</span></figcaption></figure>
+      <figure class="shot small" style="--nat:400px" data-p="hp2017"><img src="../images/hp-rollup-2017.jpg" alt="HP SQA 2017 Quantified Future roll-up design" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — roll-up design</span><span class="yr">2017</span></figcaption></figure>
       <figure class="shot" data-p="hp2017"><img src="../images/hp-panorama-2017.jpg" alt="HP SQA 2017 venue panorama with product wall" loading="lazy"><figcaption class="cap"><span>HP SQA 2017 — venue panorama</span><span class="yr">2017</span></figcaption></figure>
-      <figure class="shot" data-p="hp2017"><img src="../images/hp-signage-2017.jpg" alt="Bilingual directional signage pair for HP SQA 2017" loading="lazy"><figcaption class="cap"><span>HP SQA — wayfinding signage</span><span class="yr">2017</span></figcaption></figure>
-      <figure class="shot" data-p="hp2017"><img src="../images/hp-signage-blue-2017.jpg" alt="Reinvent Quality overhead banner, blue version" loading="lazy"><figcaption class="cap"><span>HP SQA — overhead banner</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot small" style="--nat:600px" data-p="hp2017"><img src="../images/hp-signage-2017.jpg" alt="Bilingual directional signage pair for HP SQA 2017" loading="lazy"><figcaption class="cap"><span>HP SQA — wayfinding signage</span><span class="yr">2017</span></figcaption></figure>
+      <figure class="shot small" style="--nat:330px" data-p="hp2017"><img src="../images/hp-signage-blue-2017.jpg" alt="Reinvent Quality overhead banner, blue version" loading="lazy"><figcaption class="cap"><span>HP SQA — overhead banner</span><span class="yr">2017</span></figcaption></figure>
       <figure class="shot" data-p="hp2017"><img src="../images/hp-vmd-2017.jpg" alt="Venue VMD wall of HP product posters" loading="lazy"><figcaption class="cap"><span>HP SQA — VMD product wall</span><span class="yr">2017</span></figcaption></figure>
       <figure class="shot" data-p="hp2016"><img src="../images/hp-venue-2016.jpg" alt="HP SQA 2016 welcome kits and signing wall" loading="lazy"><figcaption class="cap"><span>HP SQA 2016 — signing wall &amp; kits</span><span class="yr">2016</span></figcaption></figure>
       <figure class="shot" data-p="hp2014"><img src="../images/hp-kv-2014.jpg" alt="2014 Supplier Quality Award Notebook key visual with earth" loading="lazy"><figcaption class="cap"><span>HP SQA 2014 — key visual</span><span class="yr">2014</span></figcaption></figure>
